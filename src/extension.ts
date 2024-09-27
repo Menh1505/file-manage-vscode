@@ -34,26 +34,5 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand('filesManager.showWebview', showWebview));
 }
-
-function getWebviewContent(): string {
-  // Nội dung HTML cơ bản cho webview
-  return `
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Webview Example</title>
-          <style>
-              body { font-family: Arial, sans-serif; padding: 20px; }
-              h1 { color: blue; }
-          </style>
-      </head>
-      <body>
-          <h1>Hello from the Webview</h1>
-          <p>This is a sample webview for your VSCode extension.</p>
-      </body>
-      </html>`;
-}
 // This method is called when your extension is deactivated
 export function deactivate() { }

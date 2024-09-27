@@ -32,6 +32,9 @@ function getWebviewContent(): string {
         <body>
             <h1>Hello from the Webview</h1>
             <p>This is a sample webview for your VSCode extension.</p>
+            <p>You can customize this content as needed.</p>
+            <p>Feel free to add more HTML elements and styles.</p>
+            <p>Happy coding!</p>
         </body>
         </html>`;
 }
