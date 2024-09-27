@@ -28,11 +28,15 @@
       {
         "command": "filesManager.createFolder",
         "title": "create folder"
+      },
+      {
+        "command": "filesManager.showWebview",
+        "title": "show webview"
       }
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "npm run compile", 
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",

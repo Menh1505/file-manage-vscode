@@ -7,30 +7,53 @@ import * as vscode from 'vscode';
 import { createFile } from './features/createFile';
 import { deleteFile } from './features/deleteFile';
 import { createFolder } from './features/createFolder';
+import { showWebview } from './features/showWebview';
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 
 export function activate(context: vscode.ExtensionContext) {
 
-	/**
+  /**
   * Registers three commands:
   * - 'extension.createFile' - Executes the `createFile` function when the command is invoked.
   * - 'extension.deleteFile' - Executes the `deleteFile` function when the command is invoked.
   * - 'extension.createFolder' - Executes the `createFolder` function when the command is invoked.
   * These commands are added to the extension's subscriptions, which ensures they are properly disposed of when the extension is deactivated.
   */
-    const createFileCommand = vscode.commands.registerCommand('filesManager.createFile', () => {
-        createFile();
-    });
-    let deleteFileCommand = vscode.commands.registerCommand('filesManager.deleteFile', deleteFile);
-    let createFolderCommand = vscode.commands.registerCommand('filesManager.createFolder', createFolder);
+  const createFileCommand = vscode.commands.registerCommand('filesManager.createFile', () => { createFile(); });
+  let deleteFileCommand = vscode.commands.registerCommand('filesManager.deleteFile', deleteFile);
+  let createFolderCommand = vscode.commands.registerCommand('filesManager.createFolder', createFolder);
 
-    /**
-     * Adds the registered commands to the extension's subscriptions, ensuring they are properly disposed of when the extension is deactivated.
-     */
-    context.subscriptions.push(createFileCommand);
-    context.subscriptions.push(deleteFileCommand);
-    context.subscriptions.push(createFolderCommand);
+  /**
+   * Adds the registered commands to the extension's subscriptions, ensuring they are properly disposed of when the extension is deactivated.
+   */
+  context.subscriptions.push(createFileCommand);
+  context.subscriptions.push(deleteFileCommand);
+  context.subscriptions.push(createFolderCommand);
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('filesManager.showWebview', showWebview));
+}
+
+function getWebviewContent(): string {
+  // Nội dung HTML cơ bản cho webview
+  return `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Webview Example</title>
+          <style>
+              body { font-family: Arial, sans-serif; padding: 20px; }
+              h1 { color: blue; }
+          </style>
+      </head>
+      <body>
+          <h1>Hello from the Webview</h1>
+          <p>This is a sample webview for your VSCode extension.</p>
+      </body>
+      </html>`;
 }
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }
